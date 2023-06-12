@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "write": "prettier --write \"/src/**/*.jsx\"",
+    "write": "prettier --write \"src/**/*.jsx\"",
+    "lint": "npx eslint .",
     "preview": "vite preview",
     "prepare": "husky install"
   },
