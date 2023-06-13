@@ -1,31 +1,28 @@
+import "./styles/App.css";
 import { useState } from "react";
 
+import GameObject from "./GameObject.jsx";
+
 function App() {
-  const [count, setCount] = useState(0);
+  const [gameObject, setGameObject] = useState([
+    { pos: { left: 20, top: 20 } },
+    { pos: { left: 50, top: 20 } },
+  ]);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="game-board">
+      {gameObject.map((object, index) => {
+        return (
+          <GameObject
+            className="game-object"
+            key={index}
+            index={index}
+            gameObject={gameObject}
+            setGameObject={setGameObject}
+          />
+        );
+      })}
+    </div>
   );
 }
 
