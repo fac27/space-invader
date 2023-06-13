@@ -10,6 +10,7 @@ function App() {
   ]);
 
   const gameBoardRef = useRef(null);
+  const [villainRight, setVillainRight] = useState(true);
 
   useEffect(() => {
     const gameLoop = setInterval(() => {
@@ -33,6 +34,8 @@ function App() {
             index={index}
             villains={villains}
             setVillains={setVillains}
+            villainRight={villainRight}
+            setVillainRight={setVillainRight}
           />
         );
       })}
