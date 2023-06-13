@@ -20,14 +20,13 @@ export function handleBoundary(villains, width){
 
 function handleVillains(villains, width){
   for (let villain of villains){
-    const bool = checkBoardBoundary(villain, width)
-    if (bool){
+    if (isAtBorder(villain, width)){
       console.log("hit a boundary");
     }
   }
 }
 
 
-function checkBoardBoundary(gameObject, width) {
+function isAtBorder(gameObject, width) {
   return gameObject.pos.left > width || gameObject.pos.left < 0;
 }
