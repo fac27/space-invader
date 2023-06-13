@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 
-export default function GameObject(props) {
+export default function Villain(props) {
   const objectId = props.index;
-  const object = props.gameObject[objectId];
+  const object = props.villains[objectId];
+  console.log(object);
 
   const stylesObj = {
     top: object.pos.top,
