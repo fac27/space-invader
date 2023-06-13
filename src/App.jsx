@@ -27,7 +27,7 @@ function App() {
         return newVillains;
       });
       setHero((prevHero) => {
-        const newHero = moveHero(prevHero);
+        const newHero = moveHero(prevHero, gameBoardRef.current.offsetWidth);
         return newHero;
       });
     }, 1000 / 60);
@@ -63,8 +63,9 @@ function App() {
 
     const handleKeyUp = (event) => {
       const keyCodeActions = {
-        37: () => setHero((prevHero) => ({ ...prevHero, speed: 0 })), // Left
-        39: () => setHero((prevHero) => ({ ...prevHero, speed: 0 })), // Right
+        //forgot to set speed in this function and spent an hour trying to fix it
+        37: () => setHero((prevHero) => ({ ...prevHero, speed: 0 })),
+        39: () => setHero((prevHero) => ({ ...prevHero, speed: 0 })),
       };
 
       const action = keyCodeActions[event.keyCode];
