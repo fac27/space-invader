@@ -1,5 +1,5 @@
 import "./styles/App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import GameObject from "./GameObject.jsx";
 
@@ -8,6 +8,24 @@ function App() {
     { pos: { left: 20, top: 20 } },
     { pos: { left: 50, top: 20 } },
   ]);
+
+  useEffect(() => {
+    const gameLoop = setInterval(() => {
+      setGameObject((prevState) =>
+        prevState.map((object, index) => {
+          return {
+            ...object,
+            pos: {
+              left: object.pos.left + 5,
+              top: object.pos.top + 5,
+            },
+          };
+        })
+      );
+    }, 20);
+
+    return () => clearInterval(gameLoop);
+  }, []);
 
   return (
     <div className="game-board">
