@@ -1,12 +1,9 @@
-// MOVING THINGS
-
-export function moveObjects(setVillains) {
-  moveVillains(setVillains);
+export function moveObjects(villains) {
+  return moveVillains(villains);
 }
 
-function moveVillains(setVillains) {
-  setVillains((prevState) =>
-  prevState.map((object) => {
+function moveVillains(villains) {
+  return villains.map((object) => {
     return {
       ...object,
       pos: {
@@ -14,28 +11,22 @@ function moveVillains(setVillains) {
         top: object.pos.top + 0,
       },
     };
-  })
-  );
+  });
 }
 
-// BOUNCING THINGS
-
-export function handleBoundary(array){
-  // handleHeroes(heroes);
-  handleVillains(array);
-  // handleProjectiles(projectiles);
+export function handleBoundary(villains){
+  handleVillains(villains);
 }
 
-function handleVillains(array){
-  console.log(array);
-  for (let villain of array){
+function handleVillains(villains){
+  for (let villain of villains){
     const bool = checkBoardBoundary(villain)
     if (bool){
       console.log("hit a boundary");
     }
-
   }
 }
+
 
 function checkBoardBoundary(gameObject) {
   //helper function, returns bool

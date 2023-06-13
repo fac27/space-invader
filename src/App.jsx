@@ -13,9 +13,11 @@ function App() {
 
   useEffect(() => {
     const gameLoop = setInterval(() => {
-      moveObjects(setVillains);
-      // for objects check collision
-      handleBoundary(villains);
+      setVillains((prevVillains) => {
+        const newVillains = moveObjects(prevVillains);
+        handleBoundary(newVillains);
+        return newVillains;
+      });
     }, 1000 / 60);
 
     return () => clearInterval(gameLoop);
