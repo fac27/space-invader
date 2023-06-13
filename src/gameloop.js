@@ -14,13 +14,13 @@ function moveVillains(villains) {
   });
 }
 
-export function handleBoundary(villains){
-  handleVillains(villains);
+export function handleBoundary(villains, width){
+  handleVillains(villains, width);
 }
 
-function handleVillains(villains){
+function handleVillains(villains, width){
   for (let villain of villains){
-    const bool = checkBoardBoundary(villain)
+    const bool = checkBoardBoundary(villain, width)
     if (bool){
       console.log("hit a boundary");
     }
@@ -28,8 +28,6 @@ function handleVillains(villains){
 }
 
 
-function checkBoardBoundary(gameObject) {
-  //helper function, returns bool
-  const boundaries = 350;
-  return gameObject.pos.left > boundaries;
+function checkBoardBoundary(gameObject, width) {
+  return gameObject.pos.left > width || gameObject.pos.left < 0;
 }
