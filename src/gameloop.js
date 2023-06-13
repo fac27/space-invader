@@ -28,5 +28,5 @@ function handleVillains(villains, width){
 
 
 function isAtBorder(gameObject, width) {
-  return gameObject.pos.left > width
+  return gameObject.pos.left > width || gameObject.pos.left < 0;
 }
