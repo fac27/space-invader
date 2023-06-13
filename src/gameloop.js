@@ -2,7 +2,7 @@ export function moveObjects(villains) {
   return moveVillains(villains);
 }
 
-function moveVillains(villains) {
+export function moveVillains(villains) {
   return villains.map((object) => {
     return {
       ...object,
@@ -12,6 +12,10 @@ function moveVillains(villains) {
       },
     };
   });
+}
+
+export function moveHero(hero) {
+  return {...hero, pos:{ top: hero.pos.top + 0 , left: hero.pos.left + hero.speed}}
 }
 
 export function handleBoundary(villains, width){

@@ -1,26 +1,87 @@
 import "./styles/App.css";
 import { useState, useEffect, useRef } from "react";
 import Villain from "./Villain.jsx";
-import { moveObjects, handleBoundary } from "./gameloop.js";
+import { moveVillains, moveHero, handleBoundary } from "./gameloop.js";
+import Hero from "./Hero";
 
 function App() {
+  const gameBoardRef = useRef(null);
+
   const [villains, setVillains] = useState([
     { pos: { left: 20, top: 20 } },
     { pos: { left: 50, top: 20 } },
   ]);
-
-  const gameBoardRef = useRef(null);
+  const [hero, setHero] = useState({
+    pos: {
+      top: 0,
+      left: 0,
+    },
+    speed: 0,
+  });
 
   useEffect(() => {
     const gameLoop = setInterval(() => {
       setVillains((prevVillains) => {
-        const newVillains = moveObjects(prevVillains);
+        const newVillains = moveVillains(prevVillains);
         handleBoundary(newVillains, gameBoardRef.current.offsetWidth);
         return newVillains;
+      });
+      setHero((prevHero) => {
+        const newHero = moveHero(prevHero);
+        return newHero;
       });
     }, 1000 / 60);
 
     return () => clearInterval(gameLoop);
+  }, []);
+
+  useEffect(() => {
+    //sets the Heroes initial position
+    const heroSize = 100;
+    setHero({
+      pos: {
+        top: gameBoardRef.current.offsetWidth - heroSize,
+        left: gameBoardRef.current.offsetWidth / 2,
+      },
+      speed: 0,
+    });
+  }, []);
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      const keyCodeActions = {
+        37: () => setHero((prevHero) => ({ ...prevHero, speed: -5 })),
+        39: () => setHero((prevHero) => ({ ...prevHero, speed: 5 })),
+      };
+
+      const action = keyCodeActions[event.keyCode];
+
+      if (action) {
+        action();
+      }
+    };
+
+    const handleKeyUp = (event) => {
+      const keyCodeActions = {
+        37: () => setHero((prevHero) => ({ ...prevHero, speed: 0 })), // Left
+        39: () => setHero((prevHero) => ({ ...prevHero, speed: 0 })), // Right
+      };
+
+      const action = keyCodeActions[event.keyCode];
+
+      if (action) {
+        action();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyPress);
+    document.addEventListener("keyup", handleKeyUp);
+
+    // Cleanup function
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+      document.removeEventListener("keyup", handleKeyUp);
+    };
   }, []);
 
   return (
@@ -36,6 +97,7 @@ function App() {
           />
         );
       })}
+      <Hero hero={hero} setHero={setHero} />
     </div>
   );
 }
