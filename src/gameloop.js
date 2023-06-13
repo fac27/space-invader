@@ -10,20 +10,21 @@ export function moveVillains(villains) {
   });
 }
 
-export function handleBoundary(villains, width){
+export function handleBoundary(villains, width) {
   handleVillains(villains, width);
 }
 
-function handleVillains(villains, width){
-  for (let villain of villains){
-    const bool = checkBoardBoundary(villain, width)
-    if (bool){
-      villain.direction = !villain.direction;
-      villain.pos.top = width ? console.log("I'm dead") : villain.pos.top += 10;
+function handleVillains(villains, width) {
+  for (let villain of villains) {
+    const bool = checkBoardBoundary(villain, width);
+    if (bool) {
+      villain.direction = !villain.direction; //setVillainRight !!!
+      villain.pos.top = width
+        ? console.log("I'm dead")
+        : (villain.pos.top += 10);
     }
   }
 }
-
 
 function checkBoardBoundary(gameObject, width) {
   return gameObject.pos.left > width || gameObject.pos.left < 0;
