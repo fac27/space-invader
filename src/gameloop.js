@@ -1,3 +1,5 @@
+
+
 // MOVING THINGS
 
 export function moveObjects(setVillains) {
@@ -19,12 +21,26 @@ function moveVillains(setVillains) {
 }
 
 // BOUNCING THINGS
-function checkBoardBoundary(array) {
-  //helper function, returns bool
+
+export function handleBoundary(object){
+  // handleHeroes(heroes);
+  handleVillains(object);
+  // handleProjectiles(projectiles);
 }
 
-export function handleBoundary({heroes, villains, projectiles}){
-  handleHeroes(heroes);
-  handleVillains(villains);
-  handleProjectiles(projectiles);
+function handleVillains(object){
+  for (let villain of object.villains){
+    const bool = checkBoardBoundary(villain, object.ref)
+    if (bool){
+      console.log("hit a boundary");
+    }
+
+  }
+}
+
+function checkBoardBoundary(gameObject, ref) {
+  //helper function, returns bool
+  console.log(gameObject.pos);
+  //const boundaries = 350;
+  return gameObject.pos.left > 350;
 }
