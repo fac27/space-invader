@@ -19,7 +19,12 @@ function moveVillains(setVillains) {
 }
 
 // BOUNCING THINGS
-export function checkBoardBoundary() {
-  // check left/right/top/bottom
-  // return bool
+function checkBoardBoundary(array) {
+  //helper function, returns bool
+}
+
+export function handleBoundary({heroes, villains, projectiles}){
+  handleHeroes(heroes);
+  handleVillains(villains);
+  handleProjectiles(projectiles);
 }
