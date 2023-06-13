@@ -1,7 +1,7 @@
 import "./styles/App.css";
 import { useState, useEffect } from "react";
 
-import Villain  from "./Villain.jsx";
+import Villain from "./Villain.jsx";
 import { moveObjects, checkBoardBoundary } from "./gameloop.js";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
       moveObjects(setVillains);
       // for objects check collision
       // checkBoardBoundary();
-    }, 1000/60);
+    }, 1000 / 60);
 
     return () => clearInterval(gameLoop);
   }, []);

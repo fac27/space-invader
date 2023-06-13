@@ -19,7 +19,7 @@ function moveVillains(setVillains) {
 }
 
 // BOUNCING THINGS
-export function checkBoardBoundary(gameObject) {
+export function checkBoardBoundary() {
   // check left/right/top/bottom
   // return bool
 }
