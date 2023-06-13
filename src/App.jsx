@@ -1,12 +1,12 @@
 import "./styles/App.css";
 import { useState, useEffect, useRef } from "react";
 import Villain from "./Villain.jsx";
-import { moveObjects, handleBoundary } from "./gameloop.js";
+import { moveVillains, handleBoundary } from "./gameloop.js";
 
 function App() {
   const [villains, setVillains] = useState([
-    { pos: { left: 20, top: 20 } },
-    { pos: { left: 50, top: 20 } },
+    { pos: { left: 20, top: 20 }, direction: true },
+    { pos: { left: 50, top: 20 }, direction: true },
   ]);
 
   const gameBoardRef = useRef(null);
@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     const gameLoop = setInterval(() => {
       setVillains((prevVillains) => {
-        const newVillains = moveObjects(prevVillains);
+        const newVillains = moveVillains(prevVillains);
         handleBoundary(newVillains, gameBoardRef.current.offsetWidth);
         return newVillains;
       });
