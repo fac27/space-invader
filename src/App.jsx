@@ -15,7 +15,7 @@ function App() {
     const gameLoop = setInterval(() => {
       moveObjects(setVillains);
       // for objects check collision
-      handleBoundary({ ref: gameBoardRef, villains: villains });
+      handleBoundary(villains);
     }, 1000 / 60);
 
     return () => clearInterval(gameLoop);
