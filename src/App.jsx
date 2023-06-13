@@ -5,8 +5,8 @@ import { moveVillains, handleBoundary } from "./gameloop.js";
 
 function App() {
   const [villains, setVillains] = useState([
-    { pos: { left: 20, top: 20 }, direction: true },
-    { pos: { left: 50, top: 20 }, direction: true },
+    { pos: { left: 20, top: 350 }, direction: true },
+    { pos: { left: 50, top: 350 }, direction: true },
   ]);
 
   const gameBoardRef = useRef(null);

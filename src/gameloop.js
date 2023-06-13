@@ -4,7 +4,7 @@ export function moveVillains(villains) {
       ...object,
       pos: {
         left: object.direction ? object.pos.left + 0.5 : object.pos.left - 0.5,
-        top: object.direction ? object.pos.top + 0 : object.pos.top - 0,
+        top: object.pos.top,
       },
     };
   });
@@ -19,6 +19,7 @@ function handleVillains(villains, width){
     const bool = checkBoardBoundary(villain, width)
     if (bool){
       villain.direction = !villain.direction;
+      villain.pos.top = width ? console.log("I'm dead") : villain.pos.top += 10;
     }
   }
 }
