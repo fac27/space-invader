@@ -29,7 +29,7 @@ export function handleBoundary(villains, width) {
 }
 
 function handleVillains(villains, width) {
-  for (let villain of villains) {
+  for (let villain of villains.villainArray) {
     if (isAtBorder(villain, width).bool) {
       // turn in the opposite direction when they hit a border
       villains.villainDirection = changeDirection(villains.villainDirection);
