@@ -110,7 +110,6 @@ function App() {
       {villains.villainArray.map((villain, index) => {
         return (
           <Villain
-            className="game-object"
             key={index}
             index={index}
             pos={villain.pos}
