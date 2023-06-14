@@ -14,10 +14,9 @@ export function handleBoundary(villains, width) {
   handleVillains(villains, width);
 }
 
-function handleVillains(villains, width) {
-  for (let villain of villains) {
-    const bool = checkBoardBoundary(villain, width);
-    if (bool) {
+function handleVillains(villains, width){
+  for (let villain of villains){
+    if (isAtBorder(villain, width)) {
       villain.direction = !villain.direction; //setVillainRight !!!
       villain.pos.top = width
         ? console.log("I'm dead")
@@ -26,6 +25,7 @@ function handleVillains(villains, width) {
   }
 }
 
-function checkBoardBoundary(gameObject, width) {
+
+function isAtBorder(gameObject, width) {
   return gameObject.pos.left > width || gameObject.pos.left < 0;
 }
