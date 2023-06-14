@@ -108,13 +108,7 @@ function App() {
   return (
     <div className="game-board" ref={gameBoardRef}>
       {villains.villainArray.map((villain, index) => {
-        return (
-          <Villain
-            key={index}
-            index={index}
-            pos={villain.pos}
-          />
-        );
+        return <Villain key={index} index={index} pos={villain.pos} />;
       })}
       <Hero hero={hero} setHero={setHero} />
       {projectiles.map((projectile, index) => {
