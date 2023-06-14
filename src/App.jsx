@@ -28,10 +28,7 @@ function App() {
     },
     speed: 0,
   });
-  const [projectiles, setProjectiles] = useState([
-    { pos: { left: 20, top: 300 } },
-    { pos: { left: 50, top: 300 } },
-  ]);
+  const [projectiles, setProjectiles] = useState([]);
 
   useEffect(() => {
     const gameLoop = setInterval(() => {
