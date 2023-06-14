@@ -66,7 +66,6 @@ function App() {
 
   useEffect(() => {
     const handleKeyPress = (event) => {
-      console.log(event.keyCode);
       const keyCodeActions = {
         32: () =>
           setProjectiles((prevProjectiles) => [

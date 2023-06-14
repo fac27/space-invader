@@ -1,0 +1,8 @@
+.hero{
+    position: absolute;
+    width: 5vmin;
+    height: 5vmin;
+    font-size: 10vmin;
+    top: 100;
+    left: 100;
+}
