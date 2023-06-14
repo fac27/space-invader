@@ -39,6 +39,10 @@ function App() {
         const newHero = moveHero(prevHero, gameBoardRef.current.offsetWidth);
         return newHero;
       });
+      setProjectiles((prevProjectiles) => {
+        //const newProjectiles = moveProjectiles(prevProjectiles);
+        return;
+      });
     }, 1000 / 60);
 
     return () => clearInterval(gameLoop);
@@ -108,7 +112,7 @@ function App() {
         );
       })}
       <Hero hero={hero} setHero={setHero} />
-      {projectiles.map((projectile, index) => {
+      {/* {projectiles.map((projectile, index) => {
         return (
           <Projectile
             className="game-object"
@@ -116,7 +120,7 @@ function App() {
             key={index}
           />
         );
-      })}
+      })} */}
     </div>
   );
 }
