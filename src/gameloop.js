@@ -30,6 +30,12 @@ export function moveHero(hero, width) {
   };
 }
 
+export function moveProjectiles(projectiles){
+  return projectiles.map((projectile)=> {
+    return {...projectile, pos:{top: projectile.pos.top - 10, left: projectile.pos.left}}
+  })
+}
+
 export function handleBoundary(villains, width) {
   handleVillains(villains, width);
 }
