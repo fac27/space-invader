@@ -59,7 +59,7 @@ function handleVillains(villains, width) {
 }
 
 function isAtBorder(gameObject, width) {
-  const size = 48;
+  const size = 100;
 
   const borderObj = {
     bool: gameObject.pos.left > width - size || gameObject.pos.left <= 0,

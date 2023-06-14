@@ -53,10 +53,10 @@ function App() {
 
   useEffect(() => {
     //sets the Heroes initial position
-    const heroSize = 100;
+    const offset = 200;
     setHero({
       pos: {
-        top: gameBoardRef.current.offsetWidth - heroSize,
+        top: gameBoardRef.current.offsetWidth - offset,
         left: gameBoardRef.current.offsetWidth / 2,
       },
       speedX: 0,
