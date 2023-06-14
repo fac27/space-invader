@@ -1,13 +1,16 @@
 export function moveVillains(villains) {
-  return villains.villainArray.map((object) => {
-    return {
-      ...object,
-      pos: {
-        left: villains.villainDirection === 'left' ? object.pos.left + 0.5 : object.pos.left - 0.5,
-        top: object.pos.top,
-      },
-    };
-  });
+  return {
+    villainArray: villains.villainArray.map((object) => {
+      return {
+        ...object,
+        pos: {
+          left: villains.villainDirection === 'left' ? object.pos.left + 0.5 : object.pos.left - 0.5,
+          top: object.pos.top,
+        },
+      };
+    }),
+    villainDirection: villains.villainDirection,
+  };
 }
 
 export function moveHero(hero, width) {

@@ -27,7 +27,7 @@ function App() {
     const gameLoop = setInterval(() => {
       setVillains((prevVillains) => {
         const newVillains = moveVillains(prevVillains);
-        handleBoundary(newVillains, gameBoardRef.current.offsetWidth);
+        //handleBoundary(newVillains, gameBoardRef.current.offsetWidth);
         return newVillains;
       });
       setHero((prevHero) => {
