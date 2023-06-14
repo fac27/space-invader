@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 export default function Hero(props) {
   return (
     <span
