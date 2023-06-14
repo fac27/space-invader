@@ -1,7 +1,12 @@
 import "./styles/App.css";
 import { useState, useEffect, useRef } from "react";
 import Villain from "./Villain.jsx";
-import { moveVillains, moveHero, handleBoundary } from "./gameloop.js";
+import {
+  moveVillains,
+  moveHero,
+  handleBoundary,
+  moveProjectiles,
+} from "./gameloop.js";
 import Hero from "./Hero";
 import Projectile from "./Projectile";
 
@@ -39,10 +44,10 @@ function App() {
         const newHero = moveHero(prevHero, gameBoardRef.current.offsetWidth);
         return newHero;
       });
-      /* setProjectiles((prevProjectiles) => {
-        //const newProjectiles = moveProjectiles(prevProjectiles);
-        return;
-      }); */
+      setProjectiles((prevProjectiles) => {
+        const newProjectiles = moveProjectiles(prevProjectiles);
+        return newProjectiles;
+      });
     }, 1000 / 60);
 
     return () => clearInterval(gameLoop);
@@ -98,7 +103,6 @@ function App() {
     };
   }, []);
 
-  console.log(villains.villainArray);
   return (
     <div className="game-board" ref={gameBoardRef}>
       {villains.villainArray.map((villain, index) => {
@@ -112,6 +116,7 @@ function App() {
         );
       })}
       <Hero hero={hero} setHero={setHero} />
+      {console.log(projectiles)}
       {projectiles.map((projectile, index) => {
         return (
           <Projectile
