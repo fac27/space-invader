@@ -15,8 +15,8 @@ function App() {
 
   const [villains, setVillains] = useState({
     villainArray: [
-      { pos: { left: 500, top: 600 } },
-      { pos: { left: 490, top: 600 } },
+      { pos: { left: 500, top: 100 } },
+      { pos: { left: 400, top: 100 } },
     ],
     villainDirection: "left",
   });
