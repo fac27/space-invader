@@ -3,7 +3,7 @@ export function moveVillains(villains) {
     return {
       ...object,
       pos: {
-        left: villains.direction === 'left' ? object.pos.left + 0.5 : object.pos.left - 0.5,
+        left: villains.villainDirection === 'left' ? object.pos.left + 0.5 : object.pos.left - 0.5,
         top: object.pos.top,
       },
     };
@@ -26,9 +26,11 @@ export function handleBoundary(villains, width) {
 }
 
 function handleVillains(villains, width) {
-  for (let villain of villains.villainArray) {
+  for (let villain of villains) {
     if (isAtBorder(villain, width).bool) {
-      villains.direction = changeDirection(villains.direction);
+      // turn in the opposite direction when they hit a border
+      villains.villainDirection = changeDirection(villains.villainDirection);
+      // advance one line at the end of a loop
       villain.pos.top = width
         ? console.log("I'm dead")
         : (villain.pos.top += 10);

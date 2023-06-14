@@ -9,11 +9,12 @@ function App() {
 
   const [villains, setVillains] = useState({
     villainArray: [
-      { pos: { left: 20, top: 350 }, direction: true },
-      { pos: { left: 50, top: 350 }, direction: true },
+      { pos: { left: 20, top: 350 } },
+      { pos: { left: 50, top: 350 } },
     ],
     villainDirection: "left",
   });
+
   const [hero, setHero] = useState({
     pos: {
       top: 0,
@@ -88,6 +89,7 @@ function App() {
     };
   }, []);
 
+  console.log(villains.villainArray);
   return (
     <div className="game-board" ref={gameBoardRef}>
       {villains.villainArray.map((object, index) => {
