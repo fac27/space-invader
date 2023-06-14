@@ -10,7 +10,16 @@ export function moveVillains(villains) {
   });
 }
 
-export function handleBoundary(villains, width) {
+export function moveHero(hero, width) {
+  if (isAtBorder(hero, width))
+    return { ...hero, pos: { top: hero.pos.top, left: hero.pos.left - 5 } };
+  return {
+    ...hero,
+    pos: { top: hero.pos.top + 0, left: hero.pos.left + hero.speed },
+  };
+}
+
+export function handleBoundary(villains, width){
   handleVillains(villains, width);
 }
 
@@ -27,5 +36,9 @@ function handleVillains(villains, width){
 
 
 function isAtBorder(gameObject, width) {
+  if (gameObject.speed){
+    console.log(gameObject.pos.left);
+  }
+  
   return gameObject.pos.left > width || gameObject.pos.left < 0;
 }
