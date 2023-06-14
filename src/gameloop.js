@@ -4,7 +4,10 @@ export function moveVillains(villains) {
       return {
         ...object,
         pos: {
-          left: villains.villainDirection === 'left' ? object.pos.left + 0.5 : object.pos.left - 0.5,
+          left:
+            villains.villainDirection === "left"
+              ? object.pos.left + 0.5
+              : object.pos.left - 0.5,
           top: object.pos.top,
         },
       };
@@ -14,10 +17,13 @@ export function moveVillains(villains) {
 }
 
 export function moveHero(hero, width) {
-  const object = isAtBorder(hero, width)
-  if (object.bool){
-    const newPosition = parseInt(`${object.left ? hero.pos.left + 5 : hero.pos.left - 5}`);
-    return { ...hero, pos: { top: hero.pos.top, left: newPosition } };}
+  const object = isAtBorder(hero, width);
+  if (object.bool) {
+    const newPosition = parseInt(
+      `${object.left ? hero.pos.left + 5 : hero.pos.left - 5}`
+    );
+    return { ...hero, pos: { top: hero.pos.top, left: newPosition } };
+  }
   return {
     ...hero,
     pos: { top: hero.pos.top + 0, left: hero.pos.left + hero.speed },
@@ -40,9 +46,7 @@ function handleVillains(villains, width) {
       // turn in the opposite direction when they hit a border
       villains.villainDirection = changeDirection(villains.villainDirection);
       // advance one line at the end of a loop
-      villain.pos.top = width
-        ? console.log("I'm dead")
-        : (villain.pos.top += 10);
+      moveForward(villains.villainArray, width);
     }
   }
 }
@@ -66,4 +70,12 @@ function changeDirection(value) {
     case "left":
       return "right";
   }
+}
+
+function moveForward(allVillains, width) {
+  allVillains.forEach((villain) => {
+    villain.pos.top === width
+      ? console.log("I'M DEAD")
+      : (villain.pos.top = villain.pos.top + 10);
+  });
 }
