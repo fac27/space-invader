@@ -31,7 +31,9 @@ export function moveHero(hero, width) {
 }
 
 export function moveProjectiles(projectiles){
-  return projectiles.map((projectile)=> {
+  const newProjectiles = projectiles.filter(projectile => projectile.pos.top > 0);
+  return newProjectiles.map((projectile)=> {
+    console.log(projectile.pos)
     return {...projectile, pos:{top: projectile.pos.top - 10, left: projectile.pos.left}}
   })
 }
