@@ -1,0 +1,22 @@
+.villain {
+  background-color: transparent;
+  animation: rotate-animation 2s infinite;
+  transform-origin: center;
+}
+
+.villain::after {
+  content: "\1F9B6";
+  font-size: 4vh;
+}
+
+@keyframes rotate-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-25deg);
+  }
+  100% {
+    transform: rotate(25deg);
+  }
+}
