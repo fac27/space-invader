@@ -7,10 +7,14 @@ import Hero from "./Hero";
 function App() {
   const gameBoardRef = useRef(null);
 
-  const [villains, setVillains] = useState([
-    { pos: { left: 20, top: 350 }, direction: true },
-    { pos: { left: 50, top: 350 }, direction: true },
-  ]);
+  const [villains, setVillains] = useState({
+    villainArray: [
+      { pos: { left: 20, top: 350 } },
+      { pos: { left: 50, top: 350 } },
+    ],
+    villainDirection: "left",
+  });
+
   const [hero, setHero] = useState({
     pos: {
       top: 0,
@@ -23,7 +27,7 @@ function App() {
     const gameLoop = setInterval(() => {
       setVillains((prevVillains) => {
         const newVillains = moveVillains(prevVillains);
-        handleBoundary(newVillains, gameBoardRef.current.offsetWidth);
+        //handleBoundary(newVillains, gameBoardRef.current.offsetWidth);
         return newVillains;
       });
       setHero((prevHero) => {
@@ -85,9 +89,10 @@ function App() {
     };
   }, []);
 
+  console.log(villains.villainArray);
   return (
     <div className="game-board" ref={gameBoardRef}>
-      {villains.map((object, index) => {
+      {villains.villainArray.map((object, index) => {
         return (
           <Villain
             className="game-object"
