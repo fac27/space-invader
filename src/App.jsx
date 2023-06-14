@@ -26,7 +26,8 @@ function App() {
       top: 0,
       left: 0,
     },
-    speed: 0,
+    speedX: 0,
+    speedY: 0,
   });
   const [projectiles, setProjectiles] = useState([]);
 
@@ -48,7 +49,7 @@ function App() {
     }, 1000 / 60);
 
     return () => clearInterval(gameLoop);
-  }, []);
+  }, [villains, projectiles]);
 
   useEffect(() => {
     //sets the Heroes initial position
@@ -58,34 +59,24 @@ function App() {
         top: gameBoardRef.current.offsetWidth - heroSize,
         left: gameBoardRef.current.offsetWidth / 2,
       },
-      speed: 0,
+      speedX: 0,
+      speedY: 0,
     });
   }, []);
 
   useEffect(() => {
     const handleKeyPress = (event) => {
+      console.log(event.keyCode);
       const keyCodeActions = {
-        37: () => setHero((prevHero) => ({ ...prevHero, speed: -5 })),
-        39: () => setHero((prevHero) => ({ ...prevHero, speed: 5 })),
         32: () =>
           setProjectiles((prevProjectiles) => [
             ...prevProjectiles,
             { pos: hero.pos },
           ]),
-      };
-
-      const action = keyCodeActions[event.keyCode];
-
-      if (action) {
-        action();
-      }
-    };
-
-    const handleKeyUp = (event) => {
-      const keyCodeActions = {
-        //forgot to set speed in this function and spent an hour trying to fix it
-        37: () => setHero((prevHero) => ({ ...prevHero, speed: 0 })),
-        39: () => setHero((prevHero) => ({ ...prevHero, speed: 0 })),
+        37: () => setHero((prevHero) => ({ ...prevHero, speedX: -5 })),
+        38: () => setHero((prevHero) => ({ ...prevHero, speedY: -5 })),
+        39: () => setHero((prevHero) => ({ ...prevHero, speedX: 5 })),
+        40: () => setHero((prevHero) => ({ ...prevHero, speedY: 5 })),
       };
 
       const action = keyCodeActions[event.keyCode];
@@ -96,12 +87,10 @@ function App() {
     };
 
     document.addEventListener("keydown", handleKeyPress);
-    document.addEventListener("keyup", handleKeyUp);
 
     // Cleanup function
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
-      document.removeEventListener("keyup", handleKeyUp);
     };
   }, [hero.pos]);
 
