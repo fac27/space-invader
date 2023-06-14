@@ -8,8 +8,8 @@ function App() {
   const gameBoardRef = useRef(null);
 
   const [villains, setVillains] = useState([
-    { pos: { left: 20, top: 20 } },
-    { pos: { left: 50, top: 20 } },
+    { pos: { left: 20, top: 350 }, direction: true },
+    { pos: { left: 50, top: 350 }, direction: true },
   ]);
   const [hero, setHero] = useState({
     pos: {
