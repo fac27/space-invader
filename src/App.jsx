@@ -95,8 +95,6 @@ function App() {
             index={index}
             villains={villains}
             setVillains={setVillains}
-            villainRight={villainRight}
-            setVillainRight={setVillainRight}
           />
         );
       })}
