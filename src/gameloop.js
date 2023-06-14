@@ -1,9 +1,9 @@
 export function moveVillains(villains) {
-  return villains.map((object) => {
+  return villains.villainArray.map((object) => {
     return {
       ...object,
       pos: {
-        left: object.direction ? object.pos.left + 0.5 : object.pos.left - 0.5,
+        left: villains.direction === 'left' ? object.pos.left + 0.5 : object.pos.left - 0.5,
         top: object.pos.top,
       },
     };
@@ -21,14 +21,14 @@ export function moveHero(hero, width) {
   };
 }
 
-export function handleBoundary(villains, width){
+export function handleBoundary(villains, width) {
   handleVillains(villains, width);
 }
 
-function handleVillains(villains, width){
-  for (let villain of villains){
+function handleVillains(villains, width) {
+  for (let villain of villains.villainArray) {
     if (isAtBorder(villain, width).bool) {
-      villain.direction = !villain.direction; //setVillainRight !!!
+      villains.direction = changeDirection(villains.direction);
       villain.pos.top = width
         ? console.log("I'm dead")
         : (villain.pos.top += 10);
@@ -36,19 +36,23 @@ function handleVillains(villains, width){
   }
 }
 
-
 function isAtBorder(gameObject, width) {
-  if (gameObject.speed){
-    //console.log(gameObject.pos.left);
-  }
-
   const size = 48;
 
   const borderObj = {
     bool: gameObject.pos.left > width - size || gameObject.pos.left <= 0,
     right: gameObject.pos.left > width - size,
-    left: gameObject.pos.left <= 0
-  }
-  
+    left: gameObject.pos.left <= 0,
+  };
+
   return borderObj;
+}
+
+function changeDirection(value) {
+  switch (value) {
+    case "right":
+      return "left";
+    case "left":
+      return "right";
+  }
 }
