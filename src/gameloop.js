@@ -18,11 +18,17 @@ export function moveVillains(villains) {
 
 export function moveHero(hero, width) {
   const object = isAtBorder(hero, width);
-  if (object.bool) {
+  if (object.left || object.right) {
     const newPosition = parseInt(
       `${object.left ? hero.pos.left + 2 : hero.pos.left - 2}`
     );
     return { ...hero, pos: { top: hero.pos.top, left: newPosition } };
+  }
+  if (object.top || object.bottom) {
+    const newPosition = parseInt(
+      `${object.top ? hero.pos.top + 2 : hero.pos.top - 2}`
+    );
+    return { ...hero, pos: { top: newPosition, left: hero.pos.left } };
   }
   return {
     ...hero,
@@ -59,6 +65,8 @@ function isAtBorder(gameObject, width) {
     bool: gameObject.pos.left > width - size || gameObject.pos.left <= 0,
     right: gameObject.pos.left > width - size,
     left: gameObject.pos.left <= 0,
+    top: gameObject.pos.top <=0,
+    bottom: gameObject.pos.top > width - size,
   };
 
   return borderObj;
