@@ -1,8 +1,9 @@
 import "./styles/App.css";
 import { useState, useEffect, useRef } from "react";
 import Villain from "./Villain.jsx";
-import { moveVillains, moveHero, handleBoundary } from "./gameloop.js";
+import { moveVillains, moveHero } from "./gameloop.js";
 import Hero from "./Hero";
+import Projectile from "./Projectile";
 
 function App() {
   const gameBoardRef = useRef(null);
@@ -22,6 +23,10 @@ function App() {
     },
     speed: 0,
   });
+  const [projectiles, setProjectiles] = useState([
+    { pos: { left: 20, top: 350 } },
+    { pos: { left: 50, top: 350 } },
+  ]);
 
   useEffect(() => {
     const gameLoop = setInterval(() => {
@@ -92,18 +97,26 @@ function App() {
   console.log(villains.villainArray);
   return (
     <div className="game-board" ref={gameBoardRef}>
-      {villains.villainArray.map((object, index) => {
+      {villains.villainArray.map((villain, index) => {
         return (
           <Villain
             className="game-object"
             key={index}
             index={index}
-            villains={villains}
-            setVillains={setVillains}
+            pos={villain.pos}
           />
         );
       })}
       <Hero hero={hero} setHero={setHero} />
+      {projectiles.map((projectile, index) => {
+        return (
+          <Projectile
+            className="game-object"
+            pos={projectile.pos}
+            key={index}
+          />
+        );
+      })}
     </div>
   );
 }
