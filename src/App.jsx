@@ -94,21 +94,26 @@ function App() {
   }, [hero.pos]);
 
   return (
-    <div className="game-board" ref={gameBoardRef}>
-      {villains.villainArray.map((villain, index) => {
-        return <Villain key={index} index={index} pos={villain.pos} />;
-      })}
-      <Hero hero={hero} setHero={setHero} />
-      {projectiles.map((projectile, index) => {
-        return (
-          <Projectile
-            className="game-object"
-            pos={projectile.pos}
-            key={index}
-          />
-        );
-      })}
-    </div>
+    <>
+      <h1 style={{ textAlign: "center", color: "purple", fontSize: "3rem" }}>
+        LICK THE FEET!
+      </h1>
+      <div className="game-board" ref={gameBoardRef}>
+        {villains.villainArray.map((villain, index) => {
+          return <Villain key={index} index={index} pos={villain.pos} />;
+        })}
+        <Hero hero={hero} setHero={setHero} />
+        {projectiles.map((projectile, index) => {
+          return (
+            <Projectile
+              className="game-object"
+              pos={projectile.pos}
+              key={index}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 }
 
