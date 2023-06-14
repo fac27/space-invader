@@ -20,13 +20,13 @@ export function moveHero(hero, width) {
   const object = isAtBorder(hero, width);
   if (object.bool) {
     const newPosition = parseInt(
-      `${object.left ? hero.pos.left + 5 : hero.pos.left - 5}`
+      `${object.left ? hero.pos.left + 2 : hero.pos.left - 2}`
     );
     return { ...hero, pos: { top: hero.pos.top, left: newPosition } };
   }
   return {
     ...hero,
-    pos: { top: hero.pos.top + 0, left: hero.pos.left + hero.speed },
+    pos: { top: hero.pos.top + hero.speedY, left: hero.pos.left + hero.speedX },
   };
 }
 
