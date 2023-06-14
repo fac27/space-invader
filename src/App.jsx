@@ -1,7 +1,7 @@
 import "./styles/App.css";
 import { useState, useEffect, useRef } from "react";
 import Villain from "./Villain.jsx";
-import { moveVillains, moveHero } from "./gameloop.js";
+import { moveVillains, moveHero, handleBoundary } from "./gameloop.js";
 import Hero from "./Hero";
 import Projectile from "./Projectile";
 
@@ -10,7 +10,7 @@ function App() {
 
   const [villains, setVillains] = useState({
     villainArray: [
-      { pos: { left: 20, top: 350 } },
+      { pos: { left: 500, top: 350 } },
       { pos: { left: 50, top: 350 } },
     ],
     villainDirection: "left",
@@ -32,13 +32,17 @@ function App() {
     const gameLoop = setInterval(() => {
       setVillains((prevVillains) => {
         const newVillains = moveVillains(prevVillains);
-        //handleBoundary(newVillains, gameBoardRef.current.offsetWidth);
+        handleBoundary(newVillains, gameBoardRef.current.offsetWidth);
         return newVillains;
       });
       setHero((prevHero) => {
         const newHero = moveHero(prevHero, gameBoardRef.current.offsetWidth);
         return newHero;
       });
+      /* setProjectiles((prevProjectiles) => {
+        //const newProjectiles = moveProjectiles(prevProjectiles);
+        return;
+      }); */
     }, 1000 / 60);
 
     return () => clearInterval(gameLoop);
