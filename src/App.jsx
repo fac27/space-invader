@@ -10,8 +10,8 @@ function App() {
 
   const [villains, setVillains] = useState({
     villainArray: [
-      { pos: { left: 500, top: 350 } },
-      { pos: { left: 50, top: 350 } },
+      { pos: { left: 500, top: 600 } },
+      { pos: { left: 490, top: 600 } },
     ],
     villainDirection: "left",
   });
@@ -24,8 +24,8 @@ function App() {
     speed: 0,
   });
   const [projectiles, setProjectiles] = useState([
-    { pos: { left: 20, top: 350 } },
-    { pos: { left: 50, top: 350 } },
+    { pos: { left: 20, top: 300 } },
+    { pos: { left: 50, top: 300 } },
   ]);
 
   useEffect(() => {
@@ -98,7 +98,6 @@ function App() {
     };
   }, []);
 
-  console.log(villains.villainArray);
   return (
     <div className="game-board" ref={gameBoardRef}>
       {villains.villainArray.map((villain, index) => {
