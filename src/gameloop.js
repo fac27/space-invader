@@ -12,7 +12,7 @@ export function moveVillains(villains) {
 
 export function moveHero(hero, width) {
   if (isAtBorder(hero, width))
-    return { ...hero, pos: { top: hero.pos.top, left: hero.pos.left - 5 } };
+    return { ...hero, speed: 0 };
   return {
     ...hero,
     pos: { top: hero.pos.top + 0, left: hero.pos.left + hero.speed },
@@ -25,7 +25,7 @@ export function handleBoundary(villains, width){
 
 function handleVillains(villains, width){
   for (let villain of villains){
-    if (isAtBorder(villain, width)) {
+    if (isAtBorder(villain, width).bool) {
       villain.direction = !villain.direction; //setVillainRight !!!
       villain.pos.top = width
         ? console.log("I'm dead")
@@ -39,6 +39,14 @@ function isAtBorder(gameObject, width) {
   if (gameObject.speed){
     console.log(gameObject.pos.left);
   }
+
+  const size = 48;
+
+  const borderObj = {
+    bool: gameObject.pos.left > width - size || gameObject.pos.left <= 0,
+    right: gameObject.pos.left > width - size,
+    left: gameObject.pos.left <= 0
+  }
   
-  return gameObject.pos.left > width || gameObject.pos.left < 0;
+  return borderObj;
 }
