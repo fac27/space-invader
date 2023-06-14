@@ -67,9 +67,15 @@ function App() {
 
   useEffect(() => {
     const handleKeyPress = (event) => {
+      console.log(event.keyCode);
       const keyCodeActions = {
         37: () => setHero((prevHero) => ({ ...prevHero, speed: -5 })),
         39: () => setHero((prevHero) => ({ ...prevHero, speed: 5 })),
+        32: () =>
+          setProjectiles((prevProjectiles) => [
+            ...prevProjectiles,
+            { pos: { left: 20, top: 350 } },
+          ]),
       };
 
       const action = keyCodeActions[event.keyCode];
@@ -116,7 +122,6 @@ function App() {
         );
       })}
       <Hero hero={hero} setHero={setHero} />
-      {console.log(projectiles)}
       {projectiles.map((projectile, index) => {
         return (
           <Projectile
