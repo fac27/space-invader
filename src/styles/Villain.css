@@ -6,7 +6,7 @@
 
 .villain::after {
   content: "\1F9B6";
-  font-size: 4vh;
+  font-size: 10vmin;
 }
 
 @keyframes rotate-animation {
