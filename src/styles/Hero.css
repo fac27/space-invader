@@ -1,8 +1,8 @@
-.hero{
-    position: absolute;
-    width: 5vmin;
-    height: 5vmin;
-    font-size: 10vmin;
-    top: 100;
-    left: 100;
+.hero {
+  position: absolute;
+  width: 8vmin;
+  height: 8vmin;
+  font-size: 8vmin;
+  top: 100;
+  left: 100;
 }

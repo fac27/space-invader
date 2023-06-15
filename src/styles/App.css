@@ -8,9 +8,9 @@ body {
   width: 100vw;
 }
 
-h1{
-  height:10vmin;
-  margin:1px;
+h1 {
+  height: 10vmin;
+  margin: 1px;
 }
 
 .game-board {
@@ -25,10 +25,13 @@ h1{
   position: absolute;
   width: 5vmin;
   height: 5vmin;
-  background-color: whitesmoke;
+  background-color: transparent;
   top: 100;
   left: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.villain{
+.villain {
   background-color: hotpink;
 }

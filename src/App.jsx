@@ -9,6 +9,7 @@ import {
 } from "./gameloop.js";
 import Hero from "./Hero";
 import Projectile from "./Projectile";
+import { getVmin } from "./getVmin.js";
 
 function App() {
   const gameBoardRef = useRef(null);

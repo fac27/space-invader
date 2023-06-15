@@ -1,3 +1,7 @@
+import { getVmin } from "./getVmin.js";
+
+const objectSize = getVmin();
+
 export function moveVillains(villains) {
   return {
     villainArray: villains.villainArray.map((object) => {
@@ -26,7 +30,7 @@ export function moveHero(hero, width) {
   }
   if (object.top || object.bottom) {
     const newPosition = parseInt(
-      `${object.top ? hero.pos.top + 2 : hero.pos.top - 2}`
+      `${object.top ? hero.pos.top + objectSize : hero.pos.top - objectSize}`
     );
     return { ...hero, pos: { top: newPosition, left: hero.pos.left } };
   }
@@ -36,11 +40,16 @@ export function moveHero(hero, width) {
   };
 }
 
-export function moveProjectiles(projectiles){
-  const newProjectiles = projectiles.filter(projectile => projectile.pos.top > 0);
-  return newProjectiles.map((projectile)=> {
-    return {...projectile, pos:{top: projectile.pos.top - 10, left: projectile.pos.left}}
-  })
+export function moveProjectiles(projectiles) {
+  const newProjectiles = projectiles.filter(
+    (projectile) => projectile.pos.top > 0
+  );
+  return newProjectiles.map((projectile) => {
+    return {
+      ...projectile,
+      pos: { top: projectile.pos.top - 10, left: projectile.pos.left },
+    };
+  });
 }
 
 export function handleBoundary(villains, width) {
@@ -59,14 +68,12 @@ function handleVillains(villains, width) {
 }
 
 function isAtBorder(gameObject, width) {
-  const size = 100;
-
   const borderObj = {
-    bool: gameObject.pos.left > width - size || gameObject.pos.left <= 0,
-    right: gameObject.pos.left > width - size,
+    bool: gameObject.pos.left > width - objectSize || gameObject.pos.left <= 0,
+    right: gameObject.pos.left > width - objectSize,
     left: gameObject.pos.left <= 0,
-    top: gameObject.pos.top <=0,
-    bottom: gameObject.pos.top > width - size,
+    top: gameObject.pos.top <= 0,
+    bottom: gameObject.pos.top > width - objectSize,
   };
 
   return borderObj;
